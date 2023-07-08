@@ -1,10 +1,37 @@
+"use client";
+
 import Image from "next/image";
-import { Ubuntu, Roboto, Heebo } from "next/font/google";
+import {
+  Ubuntu,
+  Roboto,
+  Heebo,
+  Archivo_Black,
+  Montserrat,
+  Hind,
+} from "next/font/google";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import Box from "@/components/Box";
+import ProjectCards from "@/components/ProjectCards";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
   weight: ["700"],
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+});
+const hind = Hind({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+});
+
+const archivo = Archivo_Black({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-archivo",
 });
 
 const roboto = Roboto({
@@ -17,41 +44,93 @@ const heebo = Heebo({
   subsets: ["latin"],
   weight: ["200"],
 });
-
+// TODO: Footer + Make Navbar sticky + Fix MongoDB logo DO FIRST
 export default function Home() {
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const [isIntersecting2, setIsIntersecting2] = useState(false);
+  const ref = useRef(null);
+  const ref2 = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsIntersecting(entry.isIntersecting);
+        // console.log("YSAGDHA:", isIntersecting);
+      },
+      { rootMargin: "-300px" }
+    );
+    const observer2 = new IntersectionObserver(
+      ([entry]) => {
+        setIsIntersecting2(entry.isIntersecting);
+        console.log("YSAGDHA:", isIntersecting2);
+      },
+      { rootMargin: "-300px" }
+    );
+    console.log("Observer 1:", isIntersecting);
+    console.log("Observer 2:", isIntersecting2);
+    observer.observe(ref.current);
+    observer2.observe(ref2.current);
+    return () => {
+      observer.unobserve(ref.current);
+      observer2.unobserve(ref2.current);
+    };
+  }, [isIntersecting, isIntersecting2]);
+
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(
+  //     ([entry]) => {
+  //       setIsIntersecting(entry.isIntersecting);
+  //       // console.log("YSAGDHA:", isIntersecting);
+  //     },
+  //     { rootMargin: "-300px" }
+  //   );
+
+  //   observer.observe(ref2.current);
+  //   return () => {
+  //     observer.unobserve(ref.current);
+  //     observer2.unobserve(ref2.current);
+  //   };
+  //   };
+  // }, [isIntersecting2]);
+
+  const animateIn = isIntersecting ? "translate-x-0" : "-translate-x-[100rem]";
+
   return (
-    <main className="">
+    <main className="overflow-hidden z-10">
+      {/* About */}
       <section
-        className="flex min-h-screen flex-row items-center justify-center gap-40 p-24 mx-32"
+        className="flex flex-row items-center justify-center min-h-screen  gap-40 p-24 mx-32  "
         id="about"
       >
-        <div className="">
+        {/* Profile Text*/}
+        <div className="w-1/2">
           <h1
-            className={` ${ubuntu.className} lg:text-6xl sm:text-4xl text-xl pt-8`}
+            className={` ${montserrat.className} font-bold lg:text-7xl sm:text-4xl text-xl pt-8 animate-fade-in opacity`}
           >
             Juan Santos
           </h1>
-          <div className="flex flex-col gap-10 mt-5">
-            <h1 className={`${roboto.className} `}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
-              adipisci non velit. Voluptatum eos, consequuntur nisi excepturi
-              corrupti minus sit magnam eveniet nobis in nihil incidunt id
-              obcaecati quas eligendi possimus voluptate nulla sed? Odio unde
-              accusamus dolorum id tempora, distinctio dignissimos dolorem
-              quibusdam. Nisi, ea optio. Sapiente, officiis veritatis.
+          <div className="flex flex-col gap-10 mt-5 ">
+            <h1
+              className={`${hind.className} font-normal text-xl animate-fade-in2`}
+            >
+              Hi! I'm a software developer passionate about technology and
+              learning, with a special interest in web development and systems
+              design.
             </h1>
-            <div className={`${heebo.className} flex gap-10 justify-start`}>
+            <div
+              className={`${hind.className} font-light flex gap-10 justify-start text-gray-500 animate-fade-in3`}
+            >
               <Link
                 href={"https://github.com/SinampalukanEnthusiast"}
                 rel="noopener noreferrer"
                 target="_blank"
-                className="btn bg-slate-600"
+                className="text-2xl hover:text-black"
               >
                 Github
               </Link>
               <Link
                 href={"https://www.linkedin.com/in/juan-francisco-santos/"}
-                className="btn bg-blue-700"
+                className="text-2xl hover:text-black"
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -60,102 +139,147 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <Image
-          src={`https://lh3.googleusercontent.com/a/AGNmyxaNgocE0AHgxGxjIqOtMxCxbRLKf_dX7qQJaAg1-Q=s288`}
-          width={`250`}
-          height={`250`}
-          className="rounded-full"
-        />
+        {/* Profile Picture */}
+        <div className="">
+          <Image
+            src={`https://lh3.googleusercontent.com/a/AGNmyxaNgocE0AHgxGxjIqOtMxCxbRLKf_dX7qQJaAg1-Q=s288`}
+            width={`350`}
+            height={`350`}
+            className="rounded-full relative"
+            alt="profile"
+          />
+          <div className="animate-prussian absolute bg-prussian-blue w-[350px] h-[350px] rounded-full filter  blur-3xl top-[25rem] delay-2000 -z-10 mix-blend-normal"></div>
+          <div className="animate-jordy absolute bg-jordy-blue w-[450px] h-[450px] rounded-full filter  blur-3xl top-[10rem] delay-4000 right-10 -z-10  mix-blend-normal"></div>
+          <div className="animate-sunset absolute bg-sunset w-[450px] h-[450px] rounded-full filter  blur-3xl top-[20rem] left-[1000px] -z-10  mix-blend-normal"></div>
+        </div>
       </section>
-      <section id="skills">
-        <div className="h-screen flex flex-col w-screen">
-          <h1
-            className={`${ubuntu.className} text-6xl bg-black py-10 text-white text-center`}
+
+      {/* Skills */}
+      <section
+        id="skills"
+        ref={ref}
+        className="overflow-hidden border-y border-black grain"
+      >
+        <div className="h-screen flex flex-col w-screen ">
+          <div className=" flex justify-center">
+            <h1
+              className={`${montserrat.className} absolute font-semibold text-7xl py-10 text-black text-center drop-shadow-md`}
+            >
+              Skills...
+            </h1>
+          </div>
+
+          <div
+            className={`flex justify-center items-center h-full gap-10 mx-32`}
           >
-            Skills
-          </h1>
+            <div
+              className={`flex justify-center items-center h-full gap-10 mx-40 `}
+            >
+              {/* JS Box */}
+              <Box
+                isIntersecting={isIntersecting}
+                imgLink={
+                  "https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
+                }
+                name={"JavaScript"}
+              />
 
-          <div className="flex justify-center items-center h-full gap-10 mx-32">
-            <div className="text-center h-fit">
-              <div className="border-2 border-black rounded-md w-40 h-40 "></div>
-              <span className="mt-2">Skills Box 1</span>
-            </div>
+              {/* Python Box */}
 
-            <div className="text-center h-fit">
-              <div className="border-2 border-black rounded-md w-40 h-40 "></div>
-              <span className="mt-2">Skills Box 2</span>
-            </div>
+              <Box
+                isIntersecting={isIntersecting}
+                imgLink={
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/800px-Python-logo-notext.svg.png"
+                }
+                name={"Python"}
+              />
 
-            <div className="text-center h-fit">
-              <div className="border-2 border-black rounded-md w-40 h-40 "></div>
-              <span className="mt-2">Skills Box 3</span>
-            </div>
+              {/* React Box */}
+              <Box
+                isIntersecting={isIntersecting}
+                imgLink={
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/768px-React-icon.svg.png?20220125121207"
+                }
+                name={"React"}
+              />
 
-            <div className="text-center h-fit">
-              <div className="border-2 border-black rounded-md w-40 h-40 "></div>
-              <span className="mt-2">Skills Box 4</span>
-            </div>
-            <div className="text-center h-fit">
-              <div className="border-2 border-black rounded-md w-40 h-40 "></div>
-              <span className="mt-2">Skills Box 5</span>
+              {/* Django Box */}
+              <Box
+                isIntersecting={isIntersecting}
+                imgLink={"https://cdn.worldvectorlogo.com/logos/django.svg"}
+                name={"Django"}
+              />
+
+              {/* MongoDB Box */}
+              <Box
+                isIntersecting={isIntersecting}
+                imgLink={
+                  "https://symbols.getvecta.com/stencil_261/25_mongodb.cef7d00b8a.png"
+                }
+                name={"MongoDB"}
+              />
+
+              {/* Tailwind Box */}
+              <Box
+                isIntersecting={isIntersecting}
+                imgLink={
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/2048px-Tailwind_CSS_Logo.svg.png"
+                }
+                name={"Tailwind"}
+              />
             </div>
           </div>
         </div>
       </section>
 
-      <section id="projects">
-        <div className="h-screen flex flex-col w-screen">
-          <h1
-            className={`${ubuntu.className} text-6xl bg-black py-10 text-white text-center`}
-          >
-            Projects
-          </h1>
+      {/* Projects */}
+      <section id="projects" ref={ref2} className="pb-20">
+        <div className="h-screen flex flex-col w-screen ">
+          <div className="flex justify-center mb-10">
+            <h1
+              className={`${montserrat.className} absolute font-semibold text-7xl py-10 text-black text-center drop-shadow-md`}
+            >
+              Projects...
+            </h1>
+          </div>
 
-          <div className="flex h-full justify-center mx-32 divide-x cursor-pointer">
-            <div className="h-full w-1/3 flex items-center justify-center relative">
-              <span
-                className={`${roboto.className} text-4xl text-white z-10 uppercase`}
-              >
-                Project 1
-              </span>
-              <Image
-                src={
-                  "https://images.unsplash.com/photo-1681202200406-d07101763be1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=381&q=80"
-                }
-                fill
-                alt="First Project Picture"
-                className="opacity-70 hover:opacity-100"
-              />
-            </div>
-            <div className="h-full  w-1/3 flex items-center justify-center relative">
-              <span
-                className={`${roboto.className} text-4xl text-white z-10 uppercase`}
-              >
-                Project 2
-              </span>
-              <Image
-                src={`https://images.unsplash.com/photo-1681206691902-14878e9c28db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80`}
-                fill
-                alt="First Project Picture"
-                className="opacity-70 hover:opacity-100 z-0"
-              />
-            </div>
-            <div className="h-full bg-blue-300 w-1/3 flex items-center justify-center relative">
-              <span
-                className={`${roboto.className} text-4xl text-white z-10 uppercase`}
-              >
-                Project 3
-              </span>
-              <Image
-                src={
-                  "https://images.unsplash.com/photo-1581216340441-d47cad9210a4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                }
-                fill
-                alt="First Project Picture"
-                className="opacity-70 hover:opacity-100"
-                style={{ objectFit: "cover" }}
-              />
-            </div>
+          <div className="flex h-full justify-center mx-32 divide-x cursor-pointer pt-36 gap-4">
+            {/* Project 1 */}
+
+            <ProjectCards
+              imgLink={
+                "https://images.unsplash.com/photo-1681202200406-d07101763be1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=381&q=80"
+              }
+              isIntersecting={isIntersecting2}
+              name={"Basic To-do"}
+              tags={"JS, React, Next.js, Tailwind"}
+              description={
+                "Basic to-do application to showcase CRUD functionalities. Integrated with a PlanetScale database."
+              }
+            />
+
+            {/* Project 2 */}
+
+            <ProjectCards
+              imgLink={`https://images.unsplash.com/photo-1681206691902-14878e9c28db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80`}
+              isIntersecting={isIntersecting2}
+              name={"Shoelandia"}
+              tags={"Python, Django, Bootstrap"}
+              description={
+                "An e-commerce website created for a university requirement. Includes filtering functionalities and item selections by variant."
+              }
+            />
+            {/* Project 3 */}
+
+            <ProjectCards
+              imgLink={`https://images.unsplash.com/photo-1581216340441-d47cad9210a4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80            `}
+              isIntersecting={isIntersecting2}
+              name={"juansantos.dev"}
+              tags={"JS, React, Next.js, Tailwind"}
+              description={
+                "My personal portfolio website, built with React, Next.js, and Tailwind. Deployed on Vercel."
+              }
+            />
           </div>
         </div>
       </section>

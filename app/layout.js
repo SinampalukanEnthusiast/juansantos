@@ -1,4 +1,6 @@
+import Navbar from "@/components/Navbar";
 import "./globals.css";
+import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Juan Santos",
@@ -8,7 +10,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="@#grain">
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
