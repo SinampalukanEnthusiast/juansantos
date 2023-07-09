@@ -8,6 +8,7 @@ import {
   Archivo_Black,
   Montserrat,
   Hind,
+  Lato,
 } from "next/font/google";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -17,6 +18,10 @@ import ProjectCards from "@/components/ProjectCards";
 const ubuntu = Ubuntu({
   subsets: ["latin"],
   weight: ["700"],
+});
+const lato = Lato({
+  subsets: ["latin"],
+  weight: ["400", "300", "100", "700"],
 });
 
 const montserrat = Montserrat({
@@ -44,7 +49,11 @@ const heebo = Heebo({
   subsets: ["latin"],
   weight: ["200"],
 });
-// TODO: Footer + Make Navbar sticky + Fix MongoDB logo DO FIRST
+// TODO:
+//  Footer +
+//  Resume Viewer +
+//  Mobile Responsive +
+//  Make Favicon
 export default function Home() {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const [isIntersecting2, setIsIntersecting2] = useState(false);
@@ -99,7 +108,7 @@ export default function Home() {
     <main className="overflow-hidden z-10">
       {/* About */}
       <section
-        className="flex flex-row items-center justify-center min-h-screen  gap-40 p-24 mx-32  "
+        className="overflow-hidden flex flex-row items-center justify-center min-h-screen  gap-40 p-24 mx-32  "
         id="about"
       >
         {/* Profile Text*/}
@@ -160,13 +169,16 @@ export default function Home() {
         ref={ref}
         className="overflow-hidden border-y border-black grain"
       >
-        <div className="h-screen flex flex-col w-screen ">
+        <div className="h-screen flex flex-col w-screen mt-24">
           <div className=" flex justify-center">
-            <h1
-              className={`${montserrat.className} absolute font-semibold text-7xl py-10 text-black text-center drop-shadow-md`}
+            <div
+              className={`${lato.className} absolute font-bold text-xl py-10 text-black text-center drop-shadow-md uppercase flex flex-col`}
             >
-              Skills...
-            </h1>
+              <span className="text-prussian-blue">Technical</span>
+              <span className="text-6xl 96 border-b-4 border-black">
+                Skills
+              </span>
+            </div>
           </div>
 
           <div
@@ -235,21 +247,24 @@ export default function Home() {
       {/* Projects */}
       <section id="projects" ref={ref2} className="pb-20">
         <div className="h-screen flex flex-col w-screen ">
-          <div className="flex justify-center mb-10">
-            <h1
-              className={`${montserrat.className} absolute font-semibold text-7xl py-10 text-black text-center drop-shadow-md`}
+          <div className="flex justify-center mb-16">
+            <div
+              className={`${lato.className} absolute font-bold text-xl py-10 text-black text-center drop-shadow-md uppercase flex flex-col mt-10`}
             >
-              Projects...
-            </h1>
+              <span className="text-prussian-blue">Recent</span>
+              <span className="text-6xl 96 border-b-4 border-black">
+                Projects
+              </span>
+            </div>
           </div>
 
           <div className="flex h-full justify-center mx-32 divide-x cursor-pointer pt-36 gap-4">
             {/* Project 1 */}
 
             <ProjectCards
-              imgLink={
-                "https://images.unsplash.com/photo-1681202200406-d07101763be1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=381&q=80"
-              }
+              imgLink={"/to-do-app.png"}
+              siteLink={"https://juansantos-todo-app.vercel.app/"}
+              gitHubLink={"/"}
               isIntersecting={isIntersecting2}
               name={"Basic To-do"}
               tags={"JS, React, Next.js, Tailwind"}
@@ -261,8 +276,11 @@ export default function Home() {
             {/* Project 2 */}
 
             <ProjectCards
-              imgLink={`https://images.unsplash.com/photo-1681206691902-14878e9c28db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80`}
+              imgLink={`/shoelandia1.png`}
               isIntersecting={isIntersecting2}
+              gitHubLink={
+                "https://github.com/SinampalukanEnthusiast/Shoelandia"
+              }
               name={"Shoelandia"}
               tags={"Python, Django, Bootstrap"}
               description={
@@ -272,8 +290,9 @@ export default function Home() {
             {/* Project 3 */}
 
             <ProjectCards
-              imgLink={`https://images.unsplash.com/photo-1581216340441-d47cad9210a4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80            `}
+              imgLink={`/juansantos3.png`}
               isIntersecting={isIntersecting2}
+              siteLink={"https://juansantos.dev"}
               name={"juansantos.dev"}
               tags={"JS, React, Next.js, Tailwind"}
               description={

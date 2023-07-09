@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
+import { AiFillGithub } from "react-icons/ai";
+import { MdLink } from "react-icons/md";
 import { Hind } from "next/font/google";
 import Link from "next/link";
 const hind = Hind({
@@ -7,20 +11,52 @@ const hind = Hind({
   weight: ["300", "400", "500", "600"],
 });
 
-const ProjectCards = ({ imgLink, isIntersecting, name, tags, description }) => {
+const ProjectCards = ({
+  imgLink,
+  siteLink,
+  gitHubLink,
+  isIntersecting,
+  name,
+  tags,
+  description,
+}) => {
   const show = "translate-y-0 transition-all opacity-100 duration-1000";
   const hidden = "translate-y-full  transition-all opacity-0 ";
   return (
     // Card
     <div
-      className={`group h-[700px] w-1/3 flex items-center justify-center relative rounded-xl list-delay ease-in-out
+      className={`group h-[500px] w-1/3 relative rounded-xl list-delay ease-in-out
       ${isIntersecting ? show : hidden}
-      
       `}
     >
+      <div className="z-20 opacity-100 w-full group-hover:scale-105 transition-all group-hover:-translate-y-2">
+        <div className="absolute top-0 flex flex-row justify-between w-full gap-6 pb-6">
+          {siteLink && (
+            <Link
+              href={siteLink || "/"}
+              rel="noopener noreferrer"
+              target="_blank"
+              className="text-xl underline hover:scale-105 hover:text-sunset decoration-sunset transition-all text p-5"
+            >
+              <MdLink size={"35px"} />
+            </Link>
+          )}
+          {gitHubLink && (
+            <Link
+              href={gitHubLink || "/"}
+              rel="noopener noreferrer"
+              target="_blank"
+              className="text-xl underline hover:scale-105 hover:text-jordy-blue decoration-jordy-blue transition-all text p-5"
+            >
+              <AiFillGithub size={"35px"} />
+            </Link>
+          )}
+        </div>
+      </div>
       {/* Description */}
-      <div className="absolute bottom-10 w-full z-10 group-hover:opacity-100 group-hover:scale-105 group-hover:drop-shadow-lg transition-all drop-shadow-md">
-        <div className="z-10 bg-white h-52 p-5 flex flex-col justify-between ">
+
+      <div className="flex items-center justify-center absolute bottom-5 w-full z-10 group-hover:opacity-100 group-hover:scale-105 group-hover:drop-shadow-lg transition-all drop-shadow-md hover:drop-shadow-xl">
+        <div className="z-10 bg-white h-36 p-5 flex flex-col justify-between ">
           <div>
             <div className="flex flex-row justify-between ">
               <h1 className={`${hind.className} text-2xl font-semibold `}>
@@ -33,27 +69,16 @@ const ProjectCards = ({ imgLink, isIntersecting, name, tags, description }) => {
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia molestias eos neque et magni maiores voluptatum voluptates natus esse minima animi"}
             </div>
           </div>
-          <div className="flex flex-row justify-start gap-6 pb-6">
-            <Link
-              href={"/"}
-              className="text-xl underline hover:scale-105 hover:text-sunset decoration-sunset transition-all text"
-            >
-              {"Live link"}
-            </Link>
-            <Link
-              href={"/"}
-              className="text-xl underline hover:scale-105 hover:text-jordy-blue decoration-jordy-blue transition-all text"
-            >
-              {"GitHub"}
-            </Link>
-          </div>
         </div>
       </div>
+      {/* Links */}
+
       <Image
         src={imgLink}
         fill
         alt={`${name} project picture`}
-        className="opacity-70 group-hover:opacity-100 group-hover:scale-105 group-hover:drop-shadow-lg transition-all rounded-t-3xl drop-shadow-sm"
+        style={{ objectFit: "cover" }}
+        className="-z-10 opacity-70 group-hover:opacity-100 group-hover:scale-105 group-hover:drop-shadow-lg transition-all rounded-xl drop-shadow-sm"
       />
     </div>
   );

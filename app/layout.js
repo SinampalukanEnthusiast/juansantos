@@ -10,7 +10,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="@#grain">
+      <body className="scroll-smooth">
         <Navbar />
         {children}
         <Footer />

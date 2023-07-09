@@ -20,19 +20,12 @@
 
 @layer base {
   :root {
-    /* @apply radial; */
   }
 }
 
 @layer utilities {
   body {
-    /* background-image: url("/noise.svg");
-    background-color: #fafcf6;
-    background: radial-gradient(ellipse at bottom, #fafcf6, transparent),
-      radial-gradient(ellipse at top, #ffcd91, transparent), url("/noise.svg");
-    opacity: 50%; */
   }
-
   .grain {
     /* background-color: #fafcf6; */
     background: radial-gradient(ellipse at bottom, #fefefa, transparent),
