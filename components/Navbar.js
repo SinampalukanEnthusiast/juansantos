@@ -24,9 +24,9 @@ const Navbar = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", setFixed);
-  }, [window.scrollY]);
-  console.log("window.scrollY ", window.scrollY);
-  console.log("fix ", fix);
+  }, []);
+  // console.log("window.scrollY ", window.scrollY);
+  // console.log("fix ", fix);
   const scrolled = fix ? "mx-0 transition-all " : "mx-16 transition-all";
   return (
     <div
