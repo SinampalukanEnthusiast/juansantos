@@ -50,10 +50,10 @@ const heebo = Heebo({
   weight: ["200"],
 });
 // TODO:
-//  Footer +
 //  Resume Viewer +
 //  Mobile Responsive +
 //  Make Favicon
+//  Clean up code
 export default function Home() {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const [isIntersecting2, setIsIntersecting2] = useState(false);
@@ -75,8 +75,8 @@ export default function Home() {
       },
       { rootMargin: "-300px" }
     );
-    console.log("Observer 1:", isIntersecting);
-    console.log("Observer 2:", isIntersecting2);
+    // console.log("Observer 1:", isIntersecting);
+    // console.log("Observer 2:", isIntersecting2);
     observer.observe(ref.current);
     observer2.observe(ref2.current);
     return () => {

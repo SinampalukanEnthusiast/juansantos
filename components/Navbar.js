@@ -42,17 +42,17 @@ const Navbar = () => {
       <Link href="/#projects" className="text-2xl" scroll={false}>
         Projects
       </Link>
-      <Link href={""} className="text-2xl" scroll={false}>
+      <Link href={"#footer"} className="text-2xl" scroll={false}>
         Contact
       </Link>
-      <Link
+      {/* <Link
         href={""}
         className="text-2xl"
         rel="noopener noreferrer"
         target="_blank"
       >
         Resume
-      </Link>
+      </Link> */}
     </div>
   );
 };
