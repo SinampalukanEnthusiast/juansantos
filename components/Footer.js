@@ -16,7 +16,7 @@ const Footer = () => {
       id="footer"
       className={`bg-black w-full h-32 text-white p-5 relative overflow-hidden lg:px-32`}
     >
-      <div className="absolute p-4 lg:bottom-0">
+      <div className="absolute p-4 lg:bottom-0 text-sm lg:text-xl">
         © 2023 Juan Santos • All Rights Reserved.
       </div>
       <div className="absolute p-4 bottom-0 lg:right-16 ">

@@ -71,7 +71,7 @@ export default function Home() {
     const observer2 = new IntersectionObserver(
       ([entry]) => {
         setIsIntersecting2(entry.isIntersecting);
-        console.log("YSAGDHA:", isIntersecting2);
+        // console.log("YSAGDHA:", isIntersecting2);
       },
       { rootMargin: "-300px" }
     );
