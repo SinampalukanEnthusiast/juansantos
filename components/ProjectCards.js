@@ -68,18 +68,24 @@ const ProjectCards = ({
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia molestias eos neque et magni maiores voluptatum voluptates natus esse minima animi"}
             </div>
             <div className="flex lg:hidden flex-row justify-start gap-6 pb-6">
-              <Link
-                href={"/"}
-                className="text-xl underline hover:scale-105 hover:text-sunset decoration-sunset transition-all text"
-              >
-                {"Live link"}
-              </Link>
-              <Link
-                href={"/"}
-                className="text-xl underline hover:scale-105 hover:text-jordy-blue decoration-jordy-blue transition-all text"
-              >
-                {"GitHub"}
-              </Link>
+              {siteLink && (
+                <Link
+                  href={siteLink}
+                  target="_blank"
+                  className="text-xl underline hover:scale-105 hover:text-sunset decoration-sunset transition-all text"
+                >
+                  {"Live link"}
+                </Link>
+              )}
+              {gitHubLink && (
+                <Link
+                  href={gitHubLink}
+                  target="_blank"
+                  className="text-xl underline hover:scale-105 hover:text-jordy-blue decoration-jordy-blue transition-all text"
+                >
+                  {"GitHub"}
+                </Link>
+              )}
             </div>
           </div>
         </div>

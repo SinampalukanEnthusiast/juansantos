@@ -242,7 +242,9 @@ export default function Home() {
             <ProjectCards
               imgLink={"/to-do-app.png"}
               siteLink={"https://juansantos-todo-app.vercel.app/"}
-              gitHubLink={"/"}
+              gitHubLink={
+                "https://github.com/SinampalukanEnthusiast/prisma-planetscale-todo"
+              }
               isIntersecting={isIntersecting2}
               name={"Basic To-do"}
               tags={"JS, React, Next.js, Tailwind"}
