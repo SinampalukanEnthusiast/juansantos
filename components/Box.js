@@ -14,14 +14,12 @@ const Box = ({ isIntersecting, name, imgLink }) => {
           isIntersecting ? "visible" : "invisible"
         } `}
       >
-        <div className="rounded-md w-32 h-24 relative mb-2 flex flex-col">
+        <div className="rounded-md lg:w-32 lg:h-24 w-28 h-20 p-2 relative mb-2 flex flex-col">
           <Image
             src={imgLink}
-            width={"75"}
-            height={"75"}
+            fill
             style={{
-              objectFit: "cover",
-              borderRadius: "10px",
+              objectFit: "contain",
               alignSelf: "center",
             }}
             // width={"50"}
@@ -30,7 +28,7 @@ const Box = ({ isIntersecting, name, imgLink }) => {
             className="pt-4 m-0"
           />
         </div>
-        <span className={`${hind.className} text-lg`}>{name}</span>
+        <span className={`text-lg hidden md:block`}>{name || ""}</span>
       </div>
     </>
   );

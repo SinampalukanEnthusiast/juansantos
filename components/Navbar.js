@@ -30,24 +30,24 @@ const Navbar = () => {
   const scrolled = fix ? "mx-0 transition-all " : "mx-16 transition-all";
   return (
     <div
-      className={`${heebo.className} sticky top-0 z-10 flex gap-24 justify-center p-4 border-b border-black h-50 bg-white ${scrolled}`}
+      className={`${heebo.className} sticky top-0 z-10 hidden md:flex flex-col md:flex-row lg:gap-24 gap-10 justify-center p-4 border-b border-black md:h-50 h-auto bg-white ${scrolled}`}
     >
-      <Link href="/#about" className="text-2xl" scroll={false}>
+      <Link href="/#about" className="md:text-2xl text-xl" scroll={false}>
         About
       </Link>
 
-      <Link href="/#skills" className="text-2xl" scroll={false}>
+      <Link href="/#skills" className="md:text-2xl text-xl" scroll={false}>
         Skills
       </Link>
-      <Link href="/#projects" className="text-2xl" scroll={false}>
+      <Link href="/#projects" className="md:text-2xl text-xl" scroll={false}>
         Projects
       </Link>
-      <Link href={"#footer"} className="text-2xl" scroll={false}>
+      <Link href={"#footer"} className="md:text-2xl text-xl" scroll={false}>
         Contact
       </Link>
       {/* <Link
         href={""}
-        className="text-2xl"
+        className="md:text-2xl text-xl"
         rel="noopener noreferrer"
         target="_blank"
       >

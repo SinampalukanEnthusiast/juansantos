@@ -1,24 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import {
-  Ubuntu,
-  Roboto,
-  Heebo,
-  Archivo_Black,
-  Montserrat,
-  Hind,
-  Lato,
-} from "next/font/google";
+import { Montserrat, Hind, Lato } from "next/font/google";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Box from "@/components/Box";
 import ProjectCards from "@/components/ProjectCards";
+import profile from "/profilepic.jpg";
 
-const ubuntu = Ubuntu({
-  subsets: ["latin"],
-  weight: ["700"],
-});
 const lato = Lato({
   subsets: ["latin"],
   weight: ["400", "300", "100", "700"],
@@ -33,27 +22,9 @@ const hind = Hind({
   weight: ["300", "400", "500", "600"],
 });
 
-const archivo = Archivo_Black({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-archivo",
-});
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-roboto",
-});
-
-const heebo = Heebo({
-  subsets: ["latin"],
-  weight: ["200"],
-});
 // TODO:
+//  Make responsive navbar
 //  Resume Viewer +
-//  Mobile Responsive +
-//  Make Favicon
-//  Clean up code
 export default function Home() {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const [isIntersecting2, setIsIntersecting2] = useState(false);
@@ -66,14 +37,14 @@ export default function Home() {
         setIsIntersecting(entry.isIntersecting);
         // console.log("YSAGDHA:", isIntersecting);
       },
-      { rootMargin: "-300px" }
+      { rootMargin: "-100px" }
     );
     const observer2 = new IntersectionObserver(
       ([entry]) => {
         setIsIntersecting2(entry.isIntersecting);
         // console.log("YSAGDHA:", isIntersecting2);
       },
-      { rootMargin: "-300px" }
+      { rootMargin: "-100px" }
     );
     // console.log("Observer 1:", isIntersecting);
     // console.log("Observer 2:", isIntersecting2);
@@ -105,41 +76,49 @@ export default function Home() {
   const animateIn = isIntersecting ? "translate-x-0" : "-translate-x-[100rem]";
 
   return (
-    <main className="overflow-hidden z-10">
+    <main className="overflow-hidden z-10 ">
       {/* About */}
       <section
-        className="overflow-hidden flex flex-row items-center justify-center min-h-screen  gap-40 p-24 mx-32  "
+        className="
+        overflow-hidden flex flex-col-reverse 
+        items-center justify-center min-h-screen
+        lg:flex-row lg:gap-40 lg:p-24 lg:mx-32
+        "
         id="about"
       >
         {/* Profile Text*/}
-        <div className="w-1/2">
+        <div className="lg:w-full w-2/3 ">
           <h1
-            className={` ${montserrat.className} font-bold lg:text-7xl sm:text-4xl text-xl pt-8 animate-fade-in opacity`}
+            className={` ${montserrat.className} 
+            text-4xl pt-8 animate-fade-in opacity font-bold text-center
+            md:text-6xl
+            lg:text-7xl lg:text-left
+            `}
           >
             Juan Santos
           </h1>
           <div className="flex flex-col gap-10 mt-5 ">
             <h1
-              className={`${hind.className} font-normal text-xl animate-fade-in2`}
+              className={`${hind.className} font-normal text-xl animate-fade-in2 text-center lg:text-left`}
             >
               Hi! I'm a software developer passionate about technology and
               learning, with a special interest in web development and systems
               design.
             </h1>
             <div
-              className={`${hind.className} font-light flex gap-10 justify-start text-gray-500 animate-fade-in3`}
+              className={`${hind.className} font-light flex gap-10 lg:justify-start justify-center text-gray-500 animate-fade-in3`}
             >
               <Link
                 href={"https://github.com/SinampalukanEnthusiast"}
                 rel="noopener noreferrer"
                 target="_blank"
-                className="text-2xl hover:text-black"
+                className="text-2xl hover:text-black underline underline-offset-2"
               >
                 Github
               </Link>
               <Link
                 href={"https://www.linkedin.com/in/juan-francisco-santos/"}
-                className="text-2xl hover:text-black"
+                className="text-2xl hover:text-black underline underline-offset-2"
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -149,15 +128,13 @@ export default function Home() {
           </div>
         </div>
         {/* Profile Picture */}
-        <div className="">
+        <div className="md:w-auto lg:w-1/2 md:h-1/2">
           <Image
-            src={`https://lh3.googleusercontent.com/a/AGNmyxaNgocE0AHgxGxjIqOtMxCxbRLKf_dX7qQJaAg1-Q=s288`}
-            width={`350`}
-            height={`350`}
+            src={profile}
             className="rounded-full relative"
             alt="profile"
           />
-          <div className="animate-prussian absolute bg-prussian-blue w-[350px] h-[350px] rounded-full filter  blur-3xl top-[25rem] delay-2000 -z-10 mix-blend-normal"></div>
+          <div className="hidden lg:block animate-prussian absolute bg-prussian-blue w-[350px] h-[350px] rounded-full filter  blur-3xl top-[25rem] delay-2000 -z-10 mix-blend-normal"></div>
           <div className="animate-jordy absolute bg-jordy-blue w-[450px] h-[450px] rounded-full filter  blur-3xl top-[10rem] delay-4000 right-10 -z-10  mix-blend-normal"></div>
           <div className="animate-sunset absolute bg-sunset w-[450px] h-[450px] rounded-full filter  blur-3xl top-[20rem] left-[1000px] -z-10  mix-blend-normal"></div>
         </div>
@@ -172,7 +149,7 @@ export default function Home() {
         <div className="h-screen flex flex-col w-screen mt-24">
           <div className=" flex justify-center">
             <div
-              className={`${lato.className} absolute font-bold text-xl py-10 text-black text-center drop-shadow-md uppercase flex flex-col`}
+              className={` absolute font-bold text-xl py-10 text-black text-center drop-shadow-md uppercase flex flex-col`}
             >
               <span className="text-prussian-blue">Technical</span>
               <span className="text-6xl 96 border-b-4 border-black">
@@ -182,10 +159,11 @@ export default function Home() {
           </div>
 
           <div
-            className={`flex justify-center items-center h-full gap-10 mx-32`}
+            className={`flex justify-center items-center h-full gap-10 md:mx-32`}
           >
+            {/* Boxes */}
             <div
-              className={`flex justify-center items-center h-full gap-10 mx-40 `}
+              className={`grid grid-cols-2 md:grid-cols-3 py-60 md:py-40 md:mx-auto lg:flex lg:mx-40 justify-center items-center h-full gap-10   `}
             >
               {/* JS Box */}
               <Box
@@ -258,7 +236,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex h-full justify-center mx-32 divide-x cursor-pointer pt-36 gap-4">
+          <div className="flex flex-col lg:flex-row h-full justify-center cursor-pointer pt-36 gap-4 mx-20">
             {/* Project 1 */}
 
             <ProjectCards
