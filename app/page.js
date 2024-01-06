@@ -109,7 +109,7 @@ export default function Home() {
               className={`${hind.className} font-light flex gap-10 lg:justify-start justify-center text-gray-500 animate-fade-in3`}
             >
               <Link
-                href={"https://github.com/SinampalukanEnthusiast"}
+                href={"https://github.com/wanitooo"}
                 rel="noopener noreferrer"
                 target="_blank"
                 className="text-2xl hover:text-black underline underline-offset-2"
@@ -241,10 +241,8 @@ export default function Home() {
 
             <ProjectCards
               imgLink={"/to-do-app.png"}
-              siteLink={"https://juansantos-todo-app.vercel.app/"}
-              gitHubLink={
-                "https://github.com/SinampalukanEnthusiast/prisma-planetscale-todo"
-              }
+              siteLink={"https://prisma-planetscale-todo.vercel.app/"}
+              gitHubLink={"https://github.com/wanitooo/prisma-planetscale-todo"}
               isIntersecting={isIntersecting2}
               name={"Basic To-do"}
               tags={"JS, React, Next.js, Tailwind"}
@@ -258,9 +256,7 @@ export default function Home() {
             <ProjectCards
               imgLink={`/shoelandia1.png`}
               isIntersecting={isIntersecting2}
-              gitHubLink={
-                "https://github.com/SinampalukanEnthusiast/Shoelandia"
-              }
+              gitHubLink={"https://github.com/wanitooo/Shoelandia"}
               name={"Shoelandia"}
               tags={"Python, Django, Bootstrap"}
               description={
@@ -273,6 +269,7 @@ export default function Home() {
               imgLink={`/juansantos3.png`}
               isIntersecting={isIntersecting2}
               siteLink={"https://juansantos.dev"}
+              gitHubLink={"https://github.com/wanitooo/juansantos"}
               name={"juansantos.dev"}
               tags={"JS, React, Next.js, Tailwind"}
               description={
