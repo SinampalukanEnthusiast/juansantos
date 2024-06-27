@@ -22,9 +22,6 @@ const hind = Hind({
   weight: ["300", "400", "500", "600"],
 });
 
-// TODO:
-//  Make responsive navbar
-//  Resume Viewer +
 export default function Home() {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const [isIntersecting2, setIsIntersecting2] = useState(false);
@@ -102,8 +99,7 @@ export default function Home() {
               className={`${hind.className} font-normal text-xl animate-fade-in2 text-center lg:text-left`}
             >
               Hi! I'm a software developer passionate about technology and
-              learning, with a special interest in web development and systems
-              design.
+              learning, with a special interest in web development.
             </h1>
             <div
               className={`${hind.className} font-light flex gap-10 lg:justify-start justify-center text-gray-500 animate-fade-in3`}
@@ -238,8 +234,9 @@ export default function Home() {
 
           <div className="flex flex-col lg:flex-row h-full justify-center cursor-pointer pt-36 gap-4 mx-20">
             {/* Project 1 */}
-
-            <ProjectCards
+            {/* Stopped working because planetscale no longer has free tiers */}
+            {/* Could replace with discord clone but it's still very undercooked */}
+            {/* <ProjectCards
               imgLink={"/to-do-app.png"}
               siteLink={"https://prisma-planetscale-todo.vercel.app/"}
               gitHubLink={"https://github.com/wanitooo/prisma-planetscale-todo"}
@@ -249,7 +246,7 @@ export default function Home() {
               description={
                 "Basic to-do application to showcase CRUD functionalities. Integrated with a PlanetScale database."
               }
-            />
+            /> */}
 
             {/* Project 2 */}
 

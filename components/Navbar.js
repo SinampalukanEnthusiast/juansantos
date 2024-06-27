@@ -45,6 +45,15 @@ const Navbar = () => {
       <Link href={"#footer"} className="md:text-2xl text-xl" scroll={false}>
         Contact
       </Link>
+      <Link
+        href={"resume.pdf"}
+        // download={true}
+        locale={false}
+        className="md:text-2xl text-xl"
+        scroll={false}
+      >
+        Resume
+      </Link>
       {/* <Link
         href={""}
         className="md:text-2xl text-xl"
