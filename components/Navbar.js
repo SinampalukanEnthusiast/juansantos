@@ -51,6 +51,8 @@ const Navbar = () => {
         locale={false}
         className="md:text-2xl text-xl"
         scroll={false}
+        rel="noopener noreferrer"
+        target="_blank"
       >
         Resume
       </Link>
